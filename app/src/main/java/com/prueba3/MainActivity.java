@@ -29,10 +29,8 @@ public class MainActivity extends AppCompatActivity {
         vot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SQLiteDatabase db;
-                Dbhelper conn = new Dbhelper(getApplicationContext());
-                db = conn.getWritableDatabase();
-                ContentValues CV = new ContentValues();
+
+
                 if (nul.isChecked() == false || bo.isChecked() == false || kast.isChecked() == false) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage("¿Seguro?")
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                                     SQLiteDatabase db;
                                     Dbhelper conn = new Dbhelper(getApplicationContext());
                                     db = conn.getReadableDatabase();
+                                    ContentValues CV = new ContentValues();
                                     db.insert("Voto", null, CV);
                                     Intent I = new Intent(getApplicationContext(), MainActivity3.class);
                                     startActivity(I);
@@ -55,12 +54,32 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
-                if (nul.isChecked() == true){
-                    Intent I = new Intent(getApplicationContext(), MainActivity3.class);
-                    startActivity(I);
+                    SQLiteDatabase db;
+                    Dbhelper conn = new Dbhelper(getApplicationContext());
+                    db = conn.getWritableDatabase();
+                    ContentValues CV = new ContentValues();
+                    if (nul.isChecked() == true) {
+                        CV.put("voto_nulo", "Nulo");
+                        db.insert("voto", null, CV);
+                        Intent I = new Intent(getApplicationContext(), MainActivity3.class);
+                        startActivity(I);
+                    }
+                    if (bo.isChecked() == true) {
+                        CV.put("voto_boric", "Gabriel Boric");
+                        db.insert("voto", null, CV);
+                        Intent I = new Intent(getApplicationContext(), MainActivity3.class);
+                        startActivity(I);
+                    }
+                    if (kast.isChecked() == true) {
+                        CV.put("voto_kast", "Jose Antonio Kast");
+                        db.insert("voto", null, CV);
+                        Intent I = new Intent(getApplicationContext(), MainActivity3.class);
+                        startActivity(I);
+                    }
+
+
                 }
 
-            }
         });
         resul.setOnClickListener(new View.OnClickListener() {
             @Override
