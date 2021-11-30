@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                     builder.create();
                     builder.show();
 
-
                 }
                     SQLiteDatabase db;
                     Dbhelper conn = new Dbhelper(getApplicationContext());
